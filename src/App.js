@@ -2,6 +2,7 @@ import Container from "@material-ui/core/Container";
 import { AppBar, Toolbar, Typography, IconButton, Link } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
+import Main from "./components/main";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  maincontainer: {
+    backgroundColor: "gray",
+    height: "100vh",
+    paddingTop: "20px"
   }
 }));
 
@@ -22,38 +28,39 @@ function App() {
   const classes = useStyles();
 
   return (
-    <Container>
-      Dis an App
-      <AppBar color="secondary">
+    <div>
+      <AppBar position="sticky" color="secondary">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
           <div className={classes.grow} />
           <Typography className={classes.title} >
-            <Link underline="hover"
-            >
+            <Link href="/about" underline="hover" >
               About Me
             </Link>
           </Typography>
           <Typography className={classes.title} >
-            <Link>
+            <Link href="/page2" underline="hover" >
               Second
             </Link>
           </Typography>
           <Typography className={classes.title} >
-            <Link>
+            <Link href="/page3" underline="hover" >
               Third
             </Link>
           </Typography>
           <Typography className={classes.title} >
-            <Link>
+            <Link href="/page4" underline="hover" >
               Fourth
             </Link>
           </Typography>
         </Toolbar>
       </AppBar>
-    </Container>
+      <Container className={classes.maincontainer} maxWidth="false">
+        <Main />
+      </Container>
+    </div>
   );
 }
 
