@@ -1,8 +1,13 @@
 import Container from "@material-ui/core/Container";
-import { AppBar, Toolbar, Typography, IconButton, Link } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Link, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import Main from "./components/main";
+import { Link as ScrollLink, animateScroll as scroll, Element } from "react-scroll";
+import About from './components/about'
+import Footer from './components/footer'
+import LandingPage from "./components/landingpage";
+import Projects from "./components/projects";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   maincontainer: {
-    backgroundColor: "gray",
-    height: "100vh",
+    backgroundColor: "#2E4057",
     paddingTop: "20px"
   }
 }));
@@ -36,29 +40,58 @@ function App() {
           </IconButton>
           <div className={classes.grow} />
           <Typography className={classes.title} >
-            <Link href="/about" underline="hover" >
+            <ScrollLink
+              to="about"
+              delay="0"
+              smooth="easeInOutQuart"
+              offset={-100}
+            >
               About Me
-            </Link>
+            </ScrollLink>
           </Typography>
           <Typography className={classes.title} >
-            <Link href="/page2" underline="hover" >
-              Second
-            </Link>
+            <ScrollLink
+              to="footer"
+              delay="0"
+              smooth="easeOutQuint"
+              offset={-100}
+            >
+              Footers
+            </ScrollLink>
           </Typography>
           <Typography className={classes.title} >
-            <Link href="/page3" underline="hover" >
+            <ScrollLink
+              to="third"
+              delay="0"
+              smooth="easeInOutQuart"
+            >
               Third
-            </Link>
+            </ScrollLink>
           </Typography>
           <Typography className={classes.title} >
-            <Link href="/page4" underline="hover" >
+            <ScrollLink
+              to="fourth"
+              delay="0"
+              smooth="easeInOutQuart"
+            >
               Fourth
-            </Link>
+            </ScrollLink>
           </Typography>
         </Toolbar>
       </AppBar>
+
+      <LandingPage />
+      
       <Container className={classes.maincontainer} maxWidth="false">
-        <Main />
+      <Element name="about">
+        <About/>
+      </Element>
+      <Element name="projects">
+        <Projects/>
+      </Element>
+      <Element name="footer">
+        <Footer />
+      </Element>
       </Container>
     </div>
   );
